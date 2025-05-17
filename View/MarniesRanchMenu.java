@@ -8,7 +8,7 @@ import enums.MarniesRanchCommands;
 
 import java.util.Scanner;
 
-public class MarniesRanchMenu extends AppMenu{
+public class MarniesRanchMenu extends AppMenu {
     private final MarniesRanchController controller = new MarniesRanchController();
 
     public void check(Scanner scanner) {
@@ -21,18 +21,13 @@ public class MarniesRanchMenu extends AppMenu{
             System.out.println(controller.purchase(MarketMenuEnums.PURCHASE.getMather(input).group(1), MarketMenuEnums.PURCHASE.getMather(input).group(2)));
         } else if (MarketMenuEnums.CHEATADD.getMather(input) != null) {
             controller.cheatAdd(Integer.parseInt(MarketMenuEnums.CHEATADD.getMather(input).group(1)));
-        }else if (MarketMenuEnums.MenuEnter.getMather(input) != null) {
+        } else if (MarketMenuEnums.MenuEnter.getMather(input) != null) {
             controller.menuEnter(MarketMenuEnums.MenuEnter.getMather(input).group(1));
-        }
-        //Special for marnies ranch
-        else if(MarniesRanchCommands.BUYANIMAL.getMather(input) != null)
-        {
+        } else if (MarniesRanchCommands.BUYANIMAL.getMather(input) != null) {
             String typeOfAnimal = MarniesRanchCommands.BUYANIMAL.getMather(input).group(1);
             String nameOfAnimal = MarniesRanchCommands.BUYANIMAL.getMather(input).group(2);
             System.out.println(controller.buyAnimal(typeOfAnimal, nameOfAnimal));
-        }
-        else
-        {
+        } else {
             System.out.println("Invalid command");
         }
     }

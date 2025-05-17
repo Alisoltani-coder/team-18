@@ -39,7 +39,7 @@ public class MarniesRanchController extends GameMenuController implements MenuEn
                             App.getCurrentGame().getMarniesRanchMarket().removeItem(item, quantity);
                             currentPlayer.setGold(currentPlayer.getGold() - item.getCorrectPrice());
 
-                            return new Result(true, "You purchased " + count + " of " + name);
+                            return new Result(true, "You purchased " + quantity + " of " + name);
                         } else {
                             return new Result(false, "You don't have enough money");
                         }
@@ -59,7 +59,7 @@ public class MarniesRanchController extends GameMenuController implements MenuEn
                             App.getCurrentGame().getMarniesRanchMarket().removeItem(item, quantity);
                             currentPlayer.setGold(currentPlayer.getGold() - item.getCorrectPrice());
 
-                            return new Result(true, "You purchased " + count + " of " + name);
+                            return new Result(true, "You purchased " + quantity + " of " + name);
                         } else {
                             return new Result(false, "You don't have enough money");
                         }
@@ -74,12 +74,12 @@ public class MarniesRanchController extends GameMenuController implements MenuEn
                 for (Item item : App.getCurrentGame().getMarniesRanchMarket().getStock().keySet()) {
                     if (item instanceof Shear && App.getCurrentGame().getMarniesRanchMarket().getStock().get(item) >= quantity) {
                         validquantity2 = true;
-                        if (currentPlayer.getGold() >= ((MilkPail) item).getPrice()) {
+                        if (currentPlayer.getGold() >= ((Shear) item).getPrice()) {
                             currentPlayer.getInventory().addItem(item, quantity);
                             App.getCurrentGame().getMarniesRanchMarket().removeItem(item, quantity);
                             currentPlayer.setGold(currentPlayer.getGold() - item.getCorrectPrice());
 
-                            return new Result(true, "You purchased " + count + " of " + name);
+                            return new Result(true, "You purchased " + quantity + " of " + name);
                         } else {
                             return new Result(false, "You don't have enough money");
                         }
@@ -96,6 +96,7 @@ public class MarniesRanchController extends GameMenuController implements MenuEn
 
         return null;
     }
+
     public Result buyAnimal(String typeOfAnimal, String nameOfAnimal)
     {
         boolean uniqueName = IsAnimalNameUnique(nameOfAnimal);
@@ -112,8 +113,8 @@ public class MarniesRanchController extends GameMenuController implements MenuEn
                 } else {
                     CageAnimal animal = new CageAnimal();
                     if(App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyCage()== null
-                    && App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyBigCoop()== null
-                    && App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeCoop()== null)
+                            && App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyBigCoop()== null
+                            && App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeCoop()== null)
                     {
                         return new Result(false, "You don't have any coops for keep this chicken!");
                     }
@@ -226,7 +227,7 @@ public class MarniesRanchController extends GameMenuController implements MenuEn
                         return new Result(true, "Cow bought successfully and went to big barn");
 
                     } else if ((App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeBarn().getMaxCapacity() > App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeBarn().getTavilehAnimals().size()) && App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeBarn().getStatus()
-                    && App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeBarn()!=null) {
+                            && App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeBarn()!=null) {
                         //set animal pack
                         animal.setType((TavilehAnimalEnums.Cow));
                         animal.setName(nameOfAnimal);
@@ -494,8 +495,6 @@ public class MarniesRanchController extends GameMenuController implements MenuEn
 
     }
 
-
-    // for finding animal name
     public static boolean  IsAnimalNameUnique(String name)
     {
         ArrayList<Animal> playerAnimals = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyBoughtAnimals();

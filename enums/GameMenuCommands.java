@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public enum GameMenuCommands {
     WHOAMI("\\s*who\\s+am\\s+i\\s*"),
     ShowCurrentMenu("\\s*show\\s+current\\s+menu\\s*"),
-    GameNew("^\\s*game\\s+new\\s+-u\\s+(\\w+)\\s*(\\w*)\\s*(\\w*)\\s*$"),
+    GameNew("^\\s*game\\s+new\\s+-u\\s+(\\w+)\\s*(\\w*)\\s*(\\w*)\\s*(\\w*)\\s*$"),
     ExitGame("\\s*exit\\s+game\\s*"),
     VoteTerminateGame("\\s*vote\\s+terminate\\s+game\\s*"),
     NextTurn("\\s*next\\s+turn\\s*"),
@@ -114,6 +114,10 @@ public enum GameMenuCommands {
     FEEDHAY("\\s*feed\\s+hay\\s+-n\\s*(.+)\\s*"),
     PET("\\s*pet\\s+-n\\s*(.+)\\s*"),
     SELLANIMAL("\\s*sell\\s+animal\\s*-n\\s*(\\w+)\\s*");
+
+
+
+
     private final String pattern;
 
     GameMenuCommands(String pattern) {

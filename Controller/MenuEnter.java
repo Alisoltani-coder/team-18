@@ -1,6 +1,5 @@
 package Controller;
 
-public interface MenuEnter
-{
+public interface MenuEnter {
     void menuEnter(String menuName);
 }
