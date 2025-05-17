@@ -12,7 +12,7 @@ import enums.MixedSeedsEnums;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllCrop extends Crop implements Name, Price {
+public class AllCrop extends Crop implements Name ,Price{
     private ForagingSeedsEnums sourceForagingSeedEnum;
     private MixedSeedsEnums sourceMixedSeedEnum;
     private AllCropsEnums type;
@@ -843,10 +843,7 @@ public class AllCrop extends Crop implements Name, Price {
 
     @Override
     public String getCorrectName() {
-        if (type == null) {
-            return "allcrop";
-        }
-        return this.type.toString().toLowerCase().replace(" ", "");
+        return this.type.toString().toLowerCase().replace(" ","");
     }
 
     @Override

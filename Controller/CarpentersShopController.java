@@ -65,8 +65,7 @@ public class CarpentersShopController extends GameMenuController implements Menu
         }
         if (nameofBuilding.equals("big barn")) {
             if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() < 450 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 12000 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().size() < 200) {
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 12000) {
                 return new Result(false, "Your sources are not enough for build!");
             } else {
                 boolean isOkayforbuild = isAreaCompletelyEmpty(x, y, 7, 4);
@@ -109,8 +108,7 @@ public class CarpentersShopController extends GameMenuController implements Menu
         }
         if (nameofBuilding.equals("deluxe barn")) {
             if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() < 550 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 25000 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().size() < 300) {
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 25000 ) {
                 return new Result(false, "Your sources are not enough for build!");
             } else {
                 boolean isOkayforbuild = isAreaCompletelyEmpty(x, y, 7, 4);
@@ -145,7 +143,7 @@ public class CarpentersShopController extends GameMenuController implements Menu
                                 new Cord(x, y + 3), new Cord(x + 1, y + 3), new Cord(x + 2, y + 3), new Cord(x + 3, y + 3), new Cord(x + 4, y + 3), new Cord(x + 5, y + 3), new Cord(x + 6, y + 3)
                         ));
                         playerDeluxeBarn.adaptMap(cords);
-
+                        App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeBarn().setStatus(true);
                         return new Result(true, "**your deluxe barn created**");
                     }
                 }
@@ -154,8 +152,7 @@ public class CarpentersShopController extends GameMenuController implements Menu
         }
         if (nameofBuilding.equals("coop")) {
             if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() < 300 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 4000 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().size() < 100) {
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 4000) {
                 return new Result(false, "Your sources are not enough for build!");
             } else {
                 boolean isOkayforbuild = isAreaCompletelyEmpty(x, y, 6, 3);
@@ -447,7 +444,6 @@ public class CarpentersShopController extends GameMenuController implements Menu
                         if (currentPlayer.getGold() >= ((StoneItem) item).getPrice()) {
                             currentPlayer.getInventory().addItem((StoneItem) item, quantity);
                             App.getCurrentGame().getCarpentersShopMarket().removeItem(item, quantity);
-                            currentPlayer.setGold(currentPlayer.getGold() - 20 * quantity);
                             return new Result(true, "You purchased " + quantity + " of " + ((StoneItem) item).getCorrectName());
                         } else {
                             return new Result(false, "You don't have enough money");

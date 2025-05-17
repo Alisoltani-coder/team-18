@@ -13,7 +13,7 @@ public class NPC implements adaptMapMarket {
     private boolean giftedToday;
     private ArrayList<Item> favorites;
     private ArrayList<Friendshipali> friendships;
-    private HashMap<Item, NPCItem> quests;
+    private HashMap<Object, NPCItem> quests;
 
     public NPC(NPCEnums name) {
 
@@ -91,42 +91,49 @@ public class NPC implements adaptMapMarket {
         } else if (name == NPCEnums.LEAH) {
             job = "salad, grape, wine";
 
+            // Uncomment when ready
 
-            MarketProducts wood = new MarketProducts();
-            wood.setName("wood");
-            wood.setPrice(10);
-            npcItemlvl0.setQuantity(10);
-            quests.put(wood, npcItemlvl0);
+//    Wood wood = new Wood();
+//    wood.setType(WoodEnums.Normal);
+//    NPCItem leaItem0 = new NPCItem();
+//    leaItem0.setQuantity(200);
+//    quests.put(wood, leaItem0);
 
             Fish fish = new Fish("Salmon");
             npcItemlvl1.setQuantity(1);
             quests.put(fish, npcItemlvl1);
 
-            MarketProducts wood1 = new MarketProducts();
-            wood.setName("wood");
-            wood1.setPrice(10);
-            npcItemlvl2.setQuantity(200);
-            quests.put(wood1, npcItemlvl2);
+//    Furniture scarecrow = new Furniture();
+//    scarecrow.setName(FurnitureEnums.DeluxeScarecrow);
+//    NPCItem leaItem2 = new NPCItem();
+//    leaItem2.setQuantity(3);
+//    quests.put(scarecrow, leaItem2);
 
         } else if (name == NPCEnums.ROBIN) {
             job = "spaghetti, wood, iron bar";
 
-            MarketProducts wood = new MarketProducts();
-            wood.setPrice(10);
-            wood.setName("wood");
-            npcItemlvl0.setQuantity(80);
-            quests.put(wood, npcItemlvl0);
+            // Uncomment when ready
+    /*
+    Wood woodLvl1 = new Wood();
+    woodLvl1.setType(WoodEnums.Normal);
+    NPCItem robItem0 = new NPCItem();
+    robItem0.setQuantity(80);
+    quests.put(woodLvl1, robItem0);
+    */
 
-            ArtisanGoods iron = new ArtisanGoods("IronBar");
-            iron.setPrice(100);
+            Mineral ironbar = new Mineral();
+            ironbar.setType(ForagingMineralsEnums.IronOre);
             npcItemlvl1.setQuantity(10);
-            quests.put(iron, npcItemlvl1);
+            quests.put(ironbar, npcItemlvl1);
 
-            MarketProducts wood1 = new MarketProducts();
-            wood1.setPrice(10);
-            wood1.setName("wood");
-            npcItemlvl2.setQuantity(1000);
-            quests.put(wood1, npcItemlvl2);
+            // Uncomment when ready
+    /*
+    Wood woodLvl3 = new Wood();
+    woodLvl3.setType(WoodEnums.Normal);
+    NPCItem robItem2 = new NPCItem();
+    robItem2.setQuantity(1000);
+    quests.put(woodLvl3, robItem2);
+    */
         }
     }
 
@@ -138,11 +145,11 @@ public class NPC implements adaptMapMarket {
         this.friendships = friendships;
     }
 
-    public HashMap<Item, NPCItem> getQuests() {
+    public HashMap<Object, NPCItem> getQuests() {
         return quests;
     }
 
-    public void setQuests(HashMap<Item, NPCItem> quests) {
+    public void setQuests(HashMap<Object, NPCItem> quests) {
         this.quests = quests;
     }
 

@@ -34,7 +34,7 @@ public class TheStardropSaloonController implements MenuEnter, ShowCurrentMenu, 
                     currentPlayer.getCookingRecipes().add((Cookingrecipe) item);
                     App.getCurrentGame().getTheStardropSaloonMarket().removeItem(item, quantity);
                     currentPlayer.setGold(currentPlayer.getGold() - ((Cookingrecipe) item).getPrice());
-                    return new Result(true, "You purchased " + quantity + " of " + ((Cookingrecipe) item).getFood().toString() + " recipe");
+                    return new Result(true, "You purchased " + quantity + " of " + ((Cookingrecipe) item).getFood().toString());
                 } else {
                     return new Result(false, "You don't have enough money");
                 }
@@ -44,7 +44,6 @@ public class TheStardropSaloonController implements MenuEnter, ShowCurrentMenu, 
     }
 
     public Result purchase(String name, String count) {
-        currentPlayer = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl());
         int quantity = -1;
         if (count == null) {
             quantity = 1;
@@ -80,10 +79,10 @@ public class TheStardropSaloonController implements MenuEnter, ShowCurrentMenu, 
                         if (currentPlayer.getGold() >= ((FoodCooking) item).getSellPrice()) {
                             currentPlayer.getInventory().addItem((FoodCooking) item, quantity);
                             App.getCurrentGame().getTheStardropSaloonMarket().removeItem(item, quantity);
-                            currentPlayer.setGold(currentPlayer.getGold() - ((FoodCooking) item).getCorrectPrice());
+                            currentPlayer.setGold(currentPlayer.getGold() - ((Food) item).getCorrectPrice());
                             currentPlayer.getInventory().addItem((FoodCooking) item, quantity);
 
-                            return new Result(true, "You purchased " + quantity + " of " + ((FoodCooking) item).getCorrectName());
+                            return new Result(true, "You purchased " + quantity + " of " + ((Food) item).getCorrectName());
                         } else {
                             return new Result(false, "You don't have enough money");
                         }
@@ -101,9 +100,9 @@ public class TheStardropSaloonController implements MenuEnter, ShowCurrentMenu, 
                         if (currentPlayer.getGold() >= ((FoodCooking) item).getSellPrice()) {
                             currentPlayer.getInventory().addItem((FoodCooking) item, quantity);
                             App.getCurrentGame().getTheStardropSaloonMarket().removeItem(item, quantity);
-                            currentPlayer.setGold(currentPlayer.getGold() - ((FoodCooking) item).getCorrectPrice());
+                            currentPlayer.setGold(currentPlayer.getGold() - ((Food) item).getCorrectPrice());
                             currentPlayer.getInventory().addItem((FoodCooking) item, quantity);
-                            return new Result(true, "You purchased " + quantity + " of " + ((FoodCooking) item).getCorrectName());
+                            return new Result(true, "You purchased " + quantity + " of " + ((Food) item).getCorrectName());
                         } else {
                             return new Result(false, "You don't have enough money");
                         }
@@ -121,10 +120,10 @@ public class TheStardropSaloonController implements MenuEnter, ShowCurrentMenu, 
                         if (currentPlayer.getGold() >= ((FoodCooking) item).getSellPrice()) {
                             currentPlayer.getInventory().addItem((FoodCooking) item, quantity);
                             App.getCurrentGame().getTheStardropSaloonMarket().removeItem(item, quantity);
-                            currentPlayer.setGold(currentPlayer.getGold() - ((FoodCooking) item).getCorrectPrice());
+                            currentPlayer.setGold(currentPlayer.getGold() - ((Food) item).getCorrectPrice());
                             currentPlayer.getInventory().addItem((FoodCooking) item, quantity);
 
-                            return new Result(true, "You purchased " + quantity + " of " + ((FoodCooking) item).getCorrectName());
+                            return new Result(true, "You purchased " + quantity + " of " + ((Food) item).getCorrectName());
                         } else {
                             return new Result(false, "You don't have enough money");
                         }
@@ -142,10 +141,10 @@ public class TheStardropSaloonController implements MenuEnter, ShowCurrentMenu, 
                         if (currentPlayer.getGold() >= ((FoodCooking) item).getSellPrice()) {
                             currentPlayer.getInventory().addItem((FoodCooking) item, quantity);
                             App.getCurrentGame().getTheStardropSaloonMarket().removeItem(item, quantity);
-                            currentPlayer.setGold(currentPlayer.getGold() - ((FoodCooking) item).getCorrectPrice());
+                            currentPlayer.setGold(currentPlayer.getGold() - ((Food) item).getCorrectPrice());
                             currentPlayer.getInventory().addItem((FoodCooking) item, quantity);
 
-                            return new Result(true, "You purchased " + quantity + " of " + ((FoodCooking) item).getCorrectName());
+                            return new Result(true, "You purchased " + quantity + " of " + ((Food) item).getCorrectName());
                         } else {
                             return new Result(false, "You don't have enough money");
                         }

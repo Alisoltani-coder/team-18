@@ -7,7 +7,7 @@ public class Tavileh implements Name
     protected final int MaxCapacity = 4;
     protected boolean Status = false;
     protected String Level;
-    protected ArrayList<TavilehAnimal> TavilehAnimals;
+    protected ArrayList<TavilehAnimal> TavilehAnimals = new ArrayList<>();
     protected ArrayList<Kashi> insideKashis;
     protected  int goldNeeded = 6000;
     protected  int woodNeeded =350;

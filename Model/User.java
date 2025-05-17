@@ -1,6 +1,7 @@
 package Model;
 
-public class User {
+public class User
+{
 
     protected String Username;
     protected String Password;

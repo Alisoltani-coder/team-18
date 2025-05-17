@@ -7,10 +7,14 @@ import Model.Items.AnimalProduct;
 public class Animal
 {
    protected String Name;
-   protected int Friendship;
-   protected boolean Navazesh;
-   protected boolean Taghzieh;
-
+   protected int Friendship =0;
+   protected boolean Navazesh = false;
+   protected boolean Taghzieh = false;
+   ///
+   protected String whereDoILive;
+   protected int xofAnimal;
+   protected int yofAnimal;
+   protected boolean isOutside;
    protected int Price;
    protected ArrayList<AnimalProduct> AnimalProducts;
 
@@ -68,9 +72,34 @@ public class Animal
       this.AnimalProducts = AnimalProducts;
    }
 
-   public void adaptMap(HashMap<Integer ,Integer> LakeMap)
-   {
+   public boolean isOutside() {
+      return isOutside;
+   }
 
+   public void setOutside(boolean outside) {
+      isOutside = outside;
+   }
+   public int getXofAnimal() {
+      return xofAnimal;
+   }
+
+   public void setXofAnimal(int xofAnimal) {
+      this.xofAnimal = xofAnimal;
+   }
+
+   public int getYofAnimal() {
+      return yofAnimal;
+   }
+
+   public void setYofAnimal(int yofAnimal) {
+      this.yofAnimal = yofAnimal;
+   }
+   public String getWhereDoILive() {
+      return whereDoILive;
+   }
+
+   public void setWhereDoILive(String whereDoILive) {
+      this.whereDoILive = whereDoILive;
    }
 
 }

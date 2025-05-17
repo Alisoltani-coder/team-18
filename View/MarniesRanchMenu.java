@@ -4,6 +4,7 @@ import Controller.JojaMartController;
 //import Controller.MarniesRanchController;
 import Controller.MarniesRanchController;
 import enums.MarketMenuEnums;
+import enums.MarniesRanchCommands;
 
 import java.util.Scanner;
 
@@ -22,7 +23,16 @@ public class MarniesRanchMenu extends AppMenu{
             controller.cheatAdd(Integer.parseInt(MarketMenuEnums.CHEATADD.getMather(input).group(1)));
         }else if (MarketMenuEnums.MenuEnter.getMather(input) != null) {
             controller.menuEnter(MarketMenuEnums.MenuEnter.getMather(input).group(1));
-        }else {
+        }
+        //Special for marnies ranch
+        else if(MarniesRanchCommands.BUYANIMAL.getMather(input) != null)
+        {
+            String typeOfAnimal = MarniesRanchCommands.BUYANIMAL.getMather(input).group(1);
+            String nameOfAnimal = MarniesRanchCommands.BUYANIMAL.getMather(input).group(2);
+            System.out.println(controller.buyAnimal(typeOfAnimal, nameOfAnimal));
+        }
+        else
+        {
             System.out.println("Invalid command");
         }
     }

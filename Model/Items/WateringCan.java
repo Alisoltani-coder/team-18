@@ -9,7 +9,6 @@ public class WateringCan extends Tool implements Name, Price {
     protected int capacity;
     protected int max_Capacity;
 
-
     public WateringCan(String jens, int energyUsage, int capacity, int max_Capacity) {
         Jens = jens;
         EnergyUsage = energyUsage;

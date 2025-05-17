@@ -8,22 +8,22 @@ import enums.Seasons;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-public class JojoMartMarket implements adaptMapMarket {
-    HashMap<Object, Integer> Stock = new HashMap<>();
+public class JojoMartMarket  implements adaptMapMarket{
+    HashMap<Item, Integer> Stock = new HashMap<>();
 
-    public HashMap<Object, Integer> getStock() {
+    public HashMap<Item, Integer> getStock() {
         return Stock;
     }
 
-    public void setStock(HashMap<Object, Integer> stock) {
+    public void setStock(HashMap<Item, Integer> stock) {
         Stock = stock;
     }
 
-    public void addItem(Object item, int quantity) {
+    public void addItem(Item item, int quantity) {
         Stock.put(item, Stock.getOrDefault(item, 0) + quantity);
     }
 
-    public void removeItem(Object item, int quantity) {
+    public void removeItem(Item item, int quantity) {
         if (Stock.containsKey(item)) {
             int currentQuantity = Stock.get(item);
             if (currentQuantity > quantity) {
@@ -34,8 +34,7 @@ public class JojoMartMarket implements adaptMapMarket {
         }
     }
 
-    public void fillStock(String season) {
-        //System.out.println(season.toString());
+    public void fillStock(Seasons season) {
         if (Stock.size() != 0) {
             Stock.clear();
         }
@@ -51,25 +50,27 @@ public class JojoMartMarket implements adaptMapMarket {
         foragingSeed.setPrice(500);
         Stock.put(foragingSeed, 1);
 
-        Craftingrecipe craftingrecipe = new Craftingrecipe();
-        craftingrecipe.setName("Grass Starter");
-        craftingrecipe.setPrice(125);
-        Stock.put(craftingrecipe, Integer.MAX_VALUE);
+        MarketProducts marketProducts = new MarketProducts();
+        marketProducts.setName("Grass Starter");
+        marketProducts.setPrice(125);
+        Stock.put(marketProducts, Integer.MAX_VALUE);
 
         Food food1 = new Food();
         food1.setName("sugar");
         food1.setPrice(125);
         Stock.put(food1, Integer.MAX_VALUE);
 
-        AllCrop allCrop = new AllCrop();
-        allCrop.initilizeCrop(ForagingSeedsEnums.WheatSeeds);
-        Stock.put(allCrop, Integer.MAX_VALUE);
+        Food food2 = new Food();
+        food2.setName("wheat flour");
+        food2.setPrice(125);
+        Stock.put(food2, Integer.MAX_VALUE);
 
-        AllCrop allCrop1 = new AllCrop();
-        allCrop1.initilizeCrop(ForagingSeedsEnums.RiceShoot);
-        Stock.put(allCrop1, Integer.MAX_VALUE);
+        Food food3 = new Food();
+        food3.setName("rice");
+        food3.setPrice(250);
+        Stock.put(food3, Integer.MAX_VALUE);
 
-        if (season.equalsIgnoreCase("Spring")) {
+        if (season == Seasons.Spring) {
             ForagingSeed parsnipSeeds = new ForagingSeed();
             parsnipSeeds.setType(ForagingSeedsEnums.ParsnipSeeds);
             parsnipSeeds.setPrice(25);
@@ -125,7 +126,7 @@ public class JojoMartMarket implements adaptMapMarket {
             jazzSeeds.setPrice(37);
             Stock.put(jazzSeeds, 5);
         }
-        if (season.equalsIgnoreCase("Summer")) {
+        if (season == Seasons.Summer) {
             ForagingSeed tomatoSeeds = new ForagingSeed();
             tomatoSeeds.setType(ForagingSeedsEnums.TomatoSeeds);
             tomatoSeeds.setPrice(62);
@@ -186,7 +187,7 @@ public class JojoMartMarket implements adaptMapMarket {
             sunflowerSeeds.setPrice(125);
             Stock.put(sunflowerSeeds, 5);
         }
-        if (season.equalsIgnoreCase("Fall")) {
+        if (season == Seasons.Fall) {
             ForagingSeed foragingSeed1 = new ForagingSeed();
             foragingSeed1.setType(ForagingSeedsEnums.CornSeeds);
             foragingSeed1.setPrice(187);
@@ -257,14 +258,12 @@ public class JojoMartMarket implements adaptMapMarket {
             wheatSeeds1.setPrice(12);
             Stock.put(wheatSeeds1, 5);
         }
-
-        if (season.equalsIgnoreCase("Winter")) {
-            //System.out.println("winter it is");
+        if (season == Seasons.Winter) {
             ForagingSeed powdermelonSeeds = new ForagingSeed();
             powdermelonSeeds.setType(ForagingSeedsEnums.PowdermelonSeeds);
             powdermelonSeeds.setPrice(20);
             Stock.put(powdermelonSeeds, 10);
-        }
 
+        }
     }
 }

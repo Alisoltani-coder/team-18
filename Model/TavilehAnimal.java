@@ -25,8 +25,4 @@ public class TavilehAnimal extends Animal
         this.type = type;
     }
 
-    public void adaptMap(HashMap<Integer ,Integer> LakeMap)
-    {
-
-    }
 }

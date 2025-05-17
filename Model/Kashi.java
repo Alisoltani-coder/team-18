@@ -18,6 +18,10 @@ public class Kashi
         this.ShokhmZadeh = ShokhmZadeh;
     }
 
+    public boolean getShokhmZadeh()
+    {
+        return ShokhmZadeh;
+    }
     public Boolean getEnterance() {
         return Enterance;
     }

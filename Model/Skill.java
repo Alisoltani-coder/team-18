@@ -19,4 +19,6 @@ public class Skill
     public void setLevel(int level) {
         this.Level = level;
     }
+
+
 }
