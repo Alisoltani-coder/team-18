@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.App;
-import Model.Items.Item;
 import Model.Items.Mineral;
 import Model.Player;
 import Model.Result;
@@ -43,7 +42,7 @@ public class BlackSmithController implements MenuEnter, ShowCurrentMenu, MarketC
                             currentPlayer.getInventory().addItem(mineral, quantity);
                             App.getCurrentGame().getBlackSmithMarket().removeItem(mineral, quantity);
                             currentPlayer.setGold(currentPlayer.getGold() - mineral.getPrice() * quantity);
-                            return new Result(true, "You purchased " + quantity + " of " + name);
+                            return new Result(true, "You purchased " + mineral.getCorrectName() + " of " + name);
                         } else {
                             return new Result(false, "You don't have enough money");
                         }
@@ -60,13 +59,9 @@ public class BlackSmithController implements MenuEnter, ShowCurrentMenu, MarketC
                         validquantity1 = true;
                         if (currentPlayer.getGold() >= mineral.getPrice()) {
                             currentPlayer.getInventory().addItem(mineral, quantity);
-//                            for(Item item : currentPlayer.getInventory().getItems().keySet())
-//                            {
-//                                System.out.println(item.getClass().getSimpleName());
-//                            }
                             App.getCurrentGame().getBlackSmithMarket().removeItem(mineral, quantity);
                             currentPlayer.setGold(currentPlayer.getGold() - mineral.getPrice() * quantity);
-                            return new Result(true, "You purchased " + quantity + " of " + name);
+                            return new Result(true, "You purchased " + mineral.getCorrectName() + " of " + name);
                         } else {
                             return new Result(false, "You don't have enough money");
                         }
@@ -85,7 +80,7 @@ public class BlackSmithController implements MenuEnter, ShowCurrentMenu, MarketC
                             currentPlayer.getInventory().addItem(mineral, quantity);
                             App.getCurrentGame().getBlackSmithMarket().removeItem(mineral, quantity);
                             currentPlayer.setGold(currentPlayer.getGold() - mineral.getPrice() * quantity);
-                            return new Result(true, "You purchased " + quantity + " of " + name);
+                            return new Result(true, "You purchased " + mineral.getCorrectName() + " of " + name);
                         } else {
                             return new Result(false, "You don't have enough money");
                         }
@@ -104,7 +99,7 @@ public class BlackSmithController implements MenuEnter, ShowCurrentMenu, MarketC
                             currentPlayer.getInventory().addItem(mineral, quantity);
                             App.getCurrentGame().getBlackSmithMarket().removeItem(mineral, quantity);
                             currentPlayer.setGold(currentPlayer.getGold() - mineral.getPrice() * quantity);
-                            return new Result(true, "You purchased " + quantity + " of " + name);
+                            return new Result(true, "You purchased " + mineral.getCorrectName() + " of " + name);
                         } else {
                             return new Result(false, "You don't have enough money");
                         }

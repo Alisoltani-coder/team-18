@@ -2,7 +2,6 @@ package Controller;
 
 import Model.*;
 import Model.Items.Food;
-import Model.Items.Item;
 import Model.Items.Mineral;
 import Model.Items.StoneItem;
 import enums.ForagingMineralsEnums;
@@ -13,17 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CarpentersShopController extends GameMenuController implements MenuEnter, ShowCurrentMenu, MarketController<Object> {
-
-    private int countStoneItems() {
-        int counter = 0;
-        for (Item item : App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().getItems().keySet()) {
-            if (item instanceof StoneItem) {
-                counter++;
-            }
-        }
-        return counter;
-    }
-
     @Override
     public HashMap<Object, Integer> getStock() {
         return App.getCurrentGame().getCarpentersShopMarket().getStock();
@@ -33,7 +21,7 @@ public class CarpentersShopController extends GameMenuController implements Menu
         nameofBuilding = nameofBuilding.toLowerCase();
         if (nameofBuilding.equals("barn")) {
             if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() < 350 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 6000 || countStoneItems() < 150) {
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 6000) {
                 return new Result(false, "Your sources are not enough for build!" + App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() + " " + App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold());
             } else {
                 boolean isOkayforbuild = isAreaCompletelyEmpty(x, y, 7, 4);
@@ -52,12 +40,7 @@ public class CarpentersShopController extends GameMenuController implements Menu
                         int newWood = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() - 350;
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).setWood(newWood);
                         // stone hanooz mondeh
-                        for (Item item : App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().getItems().keySet()) {
-                            if (item instanceof StoneItem) {
-                                App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().removeItem(item, 150);
-                                break;
-                            }
-                        }
+
                         //System.out.println(App.getCurrentGame().getCarpentersShopMarket().isBarn());
                         App.getCurrentGame().getCarpentersShopMarket().setBarn(true);
                         //System.out.println(App.getCurrentGame().getCarpentersShopMarket().isBarn());
@@ -82,7 +65,8 @@ public class CarpentersShopController extends GameMenuController implements Menu
         }
         if (nameofBuilding.equals("big barn")) {
             if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() < 450 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 12000 || countStoneItems() < 200) {
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 12000 ||
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().size() < 200) {
                 return new Result(false, "Your sources are not enough for build!");
             } else {
                 boolean isOkayforbuild = isAreaCompletelyEmpty(x, y, 7, 4);
@@ -96,18 +80,12 @@ public class CarpentersShopController extends GameMenuController implements Menu
                     if (founded) {
                         return new Result(false, "At this time CarpentersShop doesn't have your item!");
                     } else {
-                        App.getCurrentGame().getCarpentersShopMarket().setBigbarn(true);
                         int newGold = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() - 6000;
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).setGold(newGold);
                         int newWood = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() - 350;
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).setWood(newWood);
                         //stone
-                        for (Item item : App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().getItems().keySet()) {
-                            if (item instanceof StoneItem) {
-                                App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().removeItem(item, 200);
-                                break;
-                            }
-                        }
+
                         Object Item = null;
                         for (Object item : App.getCurrentGame().getCarpentersShopMarket().getStock().keySet()) {
                             if (item instanceof BigBarn && ((BigBarn) item).getCorrectName().equalsIgnoreCase("bigbarn") && App.getCurrentGame().getCarpentersShopMarket().getStock().get(item) > 0) {
@@ -131,7 +109,8 @@ public class CarpentersShopController extends GameMenuController implements Menu
         }
         if (nameofBuilding.equals("deluxe barn")) {
             if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() < 550 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 25000 || countStoneItems() < 300) {
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 25000 ||
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().size() < 300) {
                 return new Result(false, "Your sources are not enough for build!");
             } else {
                 boolean isOkayforbuild = isAreaCompletelyEmpty(x, y, 7, 4);
@@ -145,27 +124,18 @@ public class CarpentersShopController extends GameMenuController implements Menu
                     if (founded) {
                         return new Result(false, "At this time CarpentersShop doesn't have your item!");
                     } else {
-                        App.getCurrentGame().getCarpentersShopMarket().setDeluxebarn(true);
                         int newGold = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() - 25000;
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).setGold(newGold);
                         int newWood = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() - 550;
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).setWood(newWood);
                         //stone
-
-                        for (Item item : App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().getItems().keySet()) {
-                            if (item instanceof StoneItem) {
-                                App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().removeItem(item, 300);
-                                break;
-                            }
-                        }
-
                         Object Item = null;
                         for (Object item : App.getCurrentGame().getCarpentersShopMarket().getStock().keySet()) {
                             if (item instanceof BigBarn && ((BigBarn) item).getCorrectName().equalsIgnoreCase("bigbarn") && App.getCurrentGame().getCarpentersShopMarket().getStock().get(item) > 0) {
                                 Item = item;
                             }
                         }
-                        App.getCurrentGame().getCarpentersShopMarket().removeItem(Item, 1);
+                        App.getCurrentGame().getTheStardropSaloonMarket().removeItem(Item, 1);
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().setMyDeluxeBarn(new DeluxeBarn());
                         DeluxeBarn playerDeluxeBarn = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeBarn();
                         ArrayList<Cord> cords = new ArrayList<>(List.of(
@@ -175,7 +145,6 @@ public class CarpentersShopController extends GameMenuController implements Menu
                                 new Cord(x, y + 3), new Cord(x + 1, y + 3), new Cord(x + 2, y + 3), new Cord(x + 3, y + 3), new Cord(x + 4, y + 3), new Cord(x + 5, y + 3), new Cord(x + 6, y + 3)
                         ));
                         playerDeluxeBarn.adaptMap(cords);
-                        App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeBarn().setStatus(true);
 
                         return new Result(true, "**your deluxe barn created**");
                     }
@@ -185,7 +154,8 @@ public class CarpentersShopController extends GameMenuController implements Menu
         }
         if (nameofBuilding.equals("coop")) {
             if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() < 300 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 4000 || countStoneItems() < 100) {
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 4000 ||
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().size() < 100) {
                 return new Result(false, "Your sources are not enough for build!");
             } else {
                 boolean isOkayforbuild = isAreaCompletelyEmpty(x, y, 6, 3);
@@ -204,21 +174,13 @@ public class CarpentersShopController extends GameMenuController implements Menu
                         int newWood = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() - 300;
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).setWood(newWood);
                         //stone
-                        App.getCurrentGame().getCarpentersShopMarket().setCoop(true);
-
-                        for (Item item : App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().getItems().keySet()) {
-                            if (item instanceof StoneItem) {
-                                App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().removeItem(item, 100);
-                                break;
-                            }
-                        }
                         Object Item = null;
                         for (Object item : App.getCurrentGame().getCarpentersShopMarket().getStock().keySet()) {
                             if (item instanceof Cage && ((Cage) item).getCorrectName().equalsIgnoreCase("coop") && App.getCurrentGame().getCarpentersShopMarket().getStock().get(item) > 0) {
                                 Item = item;
                             }
                         }
-                        App.getCurrentGame().getCarpentersShopMarket().removeItem(Item, 1);
+                        App.getCurrentGame().getTheStardropSaloonMarket().removeItem(Item, 1);
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().setMyCage(new Cage());
                         Cage playerCage = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyCage();
                         ArrayList<Cord> cords = new ArrayList<>(List.of(
@@ -236,7 +198,8 @@ public class CarpentersShopController extends GameMenuController implements Menu
         }
         if (nameofBuilding.equals("big coop")) {
             if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() < 400 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 10000 || countStoneItems() < 150) {
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 10000 ||
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().size() < 150) {
                 return new Result(false, "Your sources are not enough for build!");
             } else {
                 boolean isOkayforbuild = isAreaCompletelyEmpty(x, y, 6, 3);
@@ -255,20 +218,15 @@ public class CarpentersShopController extends GameMenuController implements Menu
                         int newWood = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() - 300;
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).setWood(newWood);
                         //stone 150
-                        for (Item item : App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().getItems().keySet()) {
-                            if (item instanceof StoneItem) {
-                                App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().removeItem(item, 150);
-                                break;
-                            }
-                        }
-                        App.getCurrentGame().getCarpentersShopMarket().setBigcoop(true);
+
+
                         Object Item = null;
                         for (Object item : App.getCurrentGame().getCarpentersShopMarket().getStock().keySet()) {
                             if (item instanceof BigCoop && ((BigCoop) item).getCorrectName().equalsIgnoreCase("bigcoop") && App.getCurrentGame().getCarpentersShopMarket().getStock().get(item) > 0) {
                                 Item = item;
                             }
                         }
-                        App.getCurrentGame().getCarpentersShopMarket().removeItem(Item, 1);
+                        App.getCurrentGame().getTheStardropSaloonMarket().removeItem(Item, 1);
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().setMyBigCoop(new BigCoop());
                         BigCoop playerBigCoop = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyBigCoop();
                         ArrayList<Cord> cords = new ArrayList<>(List.of(
@@ -286,7 +244,8 @@ public class CarpentersShopController extends GameMenuController implements Menu
         }
         if (nameofBuilding.equals("deluxe coop")) {
             if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() < 500 ||
-                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 20000 || countStoneItems() < 200) {
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 20000 ||
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().size() < 200) {
                 return new Result(false, "Your sources are not enough for build!");
             } else {
                 boolean isOkayforbuild = isAreaCompletelyEmpty(x, y, 6, 3);
@@ -305,21 +264,14 @@ public class CarpentersShopController extends GameMenuController implements Menu
                         int newWood = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getWood() - 500;
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).setWood(newWood);
                         //stone 200
-                        for (Item item : App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().getItems().keySet()) {
-                            if (item instanceof StoneItem) {
-                                App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().removeItem(item, 200);
-                                break;
-                            }
-                        }
-                        Object Item = null;
-                        App.getCurrentGame().getCarpentersShopMarket().setDeluxecoop(true);
 
+                        Object Item = null;
                         for (Object item : App.getCurrentGame().getCarpentersShopMarket().getStock().keySet()) {
                             if (item instanceof DeluxeCoop && ((DeluxeCoop) item).getCorrectName().equalsIgnoreCase("deluxecoop") && App.getCurrentGame().getCarpentersShopMarket().getStock().get(item) > 0) {
                                 Item = item;
                             }
                         }
-                        App.getCurrentGame().getCarpentersShopMarket().removeItem(Item, 1);
+                        App.getCurrentGame().getTheStardropSaloonMarket().removeItem(Item, 1);
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().setMyDeluxeCoop(new DeluxeCoop());
                         DeluxeCoop playerDeluxeCoop = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyDeluxeCoop();
                         ArrayList<Cord> cords = new ArrayList<>(List.of(
@@ -336,7 +288,8 @@ public class CarpentersShopController extends GameMenuController implements Menu
             }
         }
         if (nameofBuilding.equals("well")) {
-            if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 1000 || countStoneItems() < 75) {
+            if (App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getGold() < 1000 ||
+                    App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().size() < 200) {
                 return new Result(false, "Your sources are not enough for build!");
             } else {
                 boolean isOkayforbuild = isAreaCompletelyEmpty(x, y, 6, 3);
@@ -358,14 +311,7 @@ public class CarpentersShopController extends GameMenuController implements Menu
                                 Item = item;
                             }
                         }
-                        for (Item item : App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().getItems().keySet()) {
-                            if (item instanceof StoneItem) {
-                                App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getInventory().removeItem(item, 75);
-                                break;
-                            }
-                        }
-                        //App.getCurrentGame().getCarpentersShopMarket().set(true);
-                        App.getCurrentGame().getCarpentersShopMarket().removeItem(Item, 1);
+                        App.getCurrentGame().getTheStardropSaloonMarket().removeItem(Item, 1);
                         App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().setMyWell(new Well());
                         Well playerWell = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyWell();
                         ArrayList<Cord> cords = new ArrayList<>(List.of(
@@ -399,7 +345,7 @@ public class CarpentersShopController extends GameMenuController implements Menu
                             Item = item;
                         }
                     }
-                    App.getCurrentGame().getCarpentersShopMarket().removeItem(Item, 1);
+                    App.getCurrentGame().getTheStardropSaloonMarket().removeItem(Item, 1);
                     App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().setMyShippingBin(new ShippingBin());
                     ShippingBin playerShippingBin = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getMyShippingBin();
                     ArrayList<Cord> cords = new ArrayList<>(List.of(new Cord(x, y)));
