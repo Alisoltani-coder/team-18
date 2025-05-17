@@ -2,6 +2,7 @@ package Model;
 public class Skill
 {
     protected String Type;
+    protected int xp; // experience points for this friendship
     protected int Level;
 
     public String getType() {
@@ -19,4 +20,5 @@ public class Skill
     public void setLevel(int level) {
         this.Level = level;
     }
+
 }

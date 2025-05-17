@@ -1,73 +1,45 @@
 package Model.Items;
 
-import Model.Items.Item;
-import Model.Items.Price;
 import Model.Name;
-import enums.AnimalProductType;
-import enums.ProductQuality;
 
-public class AnimalProduct extends Item implements Name, Price {
-    private String name;
-    private String jens;
-    private int basePrice;
-    private AnimalProductType type;
-    private ProductQuality quality;
+public class AnimalProduct extends Item implements Name ,Price
+{
+    protected String Name;
+    protected String Jens;
+    protected int SellPrice;
 
-    public AnimalProduct(String name, String jens, int basePrice, AnimalProductType type, ProductQuality quality) {
-        this.name = name;
-        this.jens = jens;
-        this.basePrice = basePrice;
-        this.type = type;
-        this.quality = quality;
-    }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
     public String getJens() {
-        return jens;
+        return Jens;
     }
 
     public void setJens(String jens) {
-        this.jens = jens;
+        this.Jens = jens;
     }
 
-    public int getBasePrice() {
-        return basePrice;
+    public int getSellPrice() {
+        return SellPrice;
     }
 
-    public void setBasePrice(int basePrice) {
-        this.basePrice = basePrice;
-    }
-
-    public AnimalProductType getType() {
-        return type;
-    }
-
-    public void setType(AnimalProductType type) {
-        this.type = type;
-    }
-
-    public ProductQuality getQuality() {
-        return quality;
-    }
-
-    public void setQuality(ProductQuality quality) {
-        this.quality = quality;
+    public void setSellPrice(int sellPrice) {
+        this.SellPrice = sellPrice;
     }
 
     @Override
     public String getCorrectName() {
-        return name + " (" + quality.name() + ")";
+        return "";
     }
 
     @Override
     public int getCorrectPrice() {
-        return (int) (basePrice * quality.getPriceMultiplier());
+        return getSellPrice();
     }
 }
