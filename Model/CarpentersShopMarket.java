@@ -104,8 +104,10 @@ public class CarpentersShopMarket implements adaptMapMarket {
         Stock.put(deluxebarn, 1);
         StoneItem stoneItem = new StoneItem();
         stoneItem.setPrice(10);
-        Stock.put(stoneItem, 1);
+        Stock.put(stoneItem, Integer.MAX_VALUE);
         ShippingBin shippingBin = new ShippingBin();
-        Stock.put(shippingBin, 1);
+        Stock.put(shippingBin, Integer.MAX_VALUE);
+        Well well = new Well();
+        Stock.put(well, Integer.MAX_VALUE);
     }
 }

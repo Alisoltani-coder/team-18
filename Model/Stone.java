@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Stone {
+public class Stone
+{
     protected StoneTypes type;
     protected int Price;
 
@@ -51,13 +52,12 @@ public class Stone {
                     }
                 }
             }
-
-            kashi.setInside(this);
-            kashi.setWalkable(false);
-            App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().setStones(new ArrayList<>());
-            App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().add(this);
-            App.getCurrentGame().getMap().get(cord.getX()).set(cord.getY(), kashi);
-
         }
+        kashi.setInside(this);
+        kashi.setWalkable(false);
+        App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().setStones(new ArrayList<>());
+        App.getCurrentGame().getPlayers().get(App.getCurrentGame().getIndexPlayerinControl()).getMyFarm().getStones().add(this);
+        App.getCurrentGame().getMap().get(cord.getX()).set(cord.getY(), kashi);
+
     }
 }

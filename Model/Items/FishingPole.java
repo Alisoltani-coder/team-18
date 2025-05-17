@@ -154,8 +154,8 @@ public class FishingPole extends Item implements Name, Price {
         return switch (getJens()) {
             case "Training" -> 25;
             case "Bamboo" -> 500;
-            case "Iridium" -> 1800;
-            case "Fiberglass" -> 7500;
+            case "Iridium" -> 7500;
+            case "Fiberglass" -> 1800;
             default -> 0;
         };
     }

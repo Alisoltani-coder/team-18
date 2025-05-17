@@ -21,20 +21,45 @@ public class AnimalProduct extends Item implements Name, Price {
         this.quality = quality;
     }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
 
-    public String getJens() { return jens; }
-    public void setJens(String jens) { this.jens = jens; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public int getBasePrice() { return basePrice; }
-    public void setBasePrice(int basePrice) { this.basePrice = basePrice; }
+    public String getJens() {
+        return jens;
+    }
 
-    public AnimalProductType getType() { return type; }
-    public void setType(AnimalProductType type) { this.type = type; }
+    public void setJens(String jens) {
+        this.jens = jens;
+    }
 
-    public ProductQuality getQuality() { return quality; }
-    public void setQuality(ProductQuality quality) { this.quality = quality; }
+    public int getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(int basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public AnimalProductType getType() {
+        return type;
+    }
+
+    public void setType(AnimalProductType type) {
+        this.type = type;
+    }
+
+    public ProductQuality getQuality() {
+        return quality;
+    }
+
+    public void setQuality(ProductQuality quality) {
+        this.quality = quality;
+    }
 
     @Override
     public String getCorrectName() {
@@ -43,6 +68,6 @@ public class AnimalProduct extends Item implements Name, Price {
 
     @Override
     public int getCorrectPrice() {
-        return (int)(basePrice * quality.getPriceMultiplier());
+        return (int) (basePrice * quality.getPriceMultiplier());
     }
 }

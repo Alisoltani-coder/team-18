@@ -16,6 +16,7 @@ public class DeluxeBarn implements Name
     protected  int stoneNeeded = 300;
     protected String Name;
 
+
     public int getMaxCapacity()
     {
         return MaxCapacity;

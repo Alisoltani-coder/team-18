@@ -136,16 +136,16 @@ public class Hoe extends Tool implements Name,Price
     public boolean IsValidForUsing(Cord tileCord)
     {
         Kashi kashi = App.getCurrentGame().getMap().get(tileCord.getX()).get(tileCord.getY());
-            if(!(kashi.getShokhmZadeh()) && kashi.getInside()==null)
-            {
-                return true;
-            }
-            return false;
+        if(!(kashi.isShokhmZadeh()) && kashi.getInside()==null)
+        {
+            return true;
+        }
+        return false;
 
     }
     @Override
     public String getCorrectName() {
-        return "";
+        return "hoe";
     }
 
     @Override

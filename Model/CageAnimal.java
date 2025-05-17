@@ -25,5 +25,8 @@ public class CageAnimal extends Animal
         LivePlace = livePlace;
     }
 
+    public void adaptMap(HashMap<Integer ,Integer> LakeMap)
+    {
 
+    }
 }

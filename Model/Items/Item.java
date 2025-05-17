@@ -3,7 +3,7 @@ package Model.Items;
 import Model.Name;
 
 public class Item implements Name, Price {
-    protected String name;
+    protected String name;  // یا public
 
     public void setName(String name) {
         this.name = name;
@@ -17,6 +17,7 @@ public class Item implements Name, Price {
     public String getCorrectName() {
         return "";
     }
+
 
     @Override
     public int getCorrectPrice() {
