@@ -23,7 +23,7 @@ public enum ArtisanGoodsEnums {
             470
     ),
 
-    Cheese_Normal(
+    CheeseNormal(
             CraftingRecipesEnums.CheesePress,
             100,
             new DateTime(3,0),
@@ -33,7 +33,7 @@ public enum ArtisanGoodsEnums {
             230
     ),
 
-    Cheese_Large(
+    CheeseLarge(
             CraftingRecipesEnums.CheesePress,
             100,
             new DateTime(3,0),
@@ -43,7 +43,7 @@ public enum ArtisanGoodsEnums {
             345
     ),
 
-    Mayonnaise_Normal(
+    MayonnaiseNormal(
             CraftingRecipesEnums.MayonnaiseMachine,
             50,
             new DateTime(3,0),
@@ -53,7 +53,7 @@ public enum ArtisanGoodsEnums {
             190
     ),
 
-    Mayonnaise_Large(
+    MayonnaiseLarge(
             CraftingRecipesEnums.MayonnaiseMachine,
             50,
             new DateTime(3,0),
@@ -63,7 +63,7 @@ public enum ArtisanGoodsEnums {
             237
     ),
 
-    GoatCheese_Normal(
+    GoatCheeseNormal(
             CraftingRecipesEnums.CheesePress,
             100,
             new DateTime(3,0),
@@ -73,7 +73,7 @@ public enum ArtisanGoodsEnums {
             400
     ),
 
-    GoatCheese_Large(
+    GoatCheeseLarge(
             CraftingRecipesEnums.CheesePress,
             100,
             new DateTime(3,0),
@@ -198,7 +198,7 @@ public enum ArtisanGoodsEnums {
             1065
     ),
 
-    Oil_Corn(
+    OilCorn(
             CraftingRecipesEnums.OilMaker,
             13,
             new DateTime(6, 0),  // تغییر از (0,6) به (6,0)
@@ -208,7 +208,7 @@ public enum ArtisanGoodsEnums {
             100
     ),
 
-    Oil_Seeds(
+    OilSeeds(
             CraftingRecipesEnums.OilMaker,
             13,
             new DateTime(0, 2),  // تغییر از (2,0) به (0,2)
@@ -218,7 +218,7 @@ public enum ArtisanGoodsEnums {
             100
     ),
 
-    Oil_Sunflower(
+    OilSunflower(
             CraftingRecipesEnums.OilMaker,
             13,
             new DateTime(1, 0),  // تغییر از (0,1) به (1,0)
@@ -360,6 +360,7 @@ public enum ArtisanGoodsEnums {
     }
 
     public static boolean isContain (String name){
+        name=name.replaceAll(" ","");
         for (ArtisanGoodsEnums allTreesEnums : ArtisanGoodsEnums.values()){
             if (allTreesEnums.name().equalsIgnoreCase(name)){
                 return true;
@@ -368,6 +369,7 @@ public enum ArtisanGoodsEnums {
         return false;
     }
     public static ArtisanGoodsEnums getEnum(String name) {
+        name=name.replaceAll(" ","");
         for(ArtisanGoodsEnums allTreesEnums : ArtisanGoodsEnums.values()){
             if (allTreesEnums.name().equalsIgnoreCase(name)){
                 return allTreesEnums;
